@@ -46,7 +46,7 @@ const LoginPage = () => {
         />
         <button
           type="submit"
-          className="w-full py-2 bg-purple-600 text-white rounded-lg"
+          className="w-full py-2 bg-purple-600 text-white rounded-lg cursor-pointer"
         >
           Login
         </button>

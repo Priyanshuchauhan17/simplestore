@@ -59,6 +59,14 @@ export default function Header({ cart = [], products = [] }) {
                 >
                   Home
                 </NavLink>
+                 <NavLink
+                  to="/adminpage"
+                  className={({ isActive }) =>
+                    `${linkBase} ${isActive ? activeClass : idleClass}`
+                  }
+                >
+                  Admin
+                </NavLink>
 
                 <NavLink
                   to="/products"

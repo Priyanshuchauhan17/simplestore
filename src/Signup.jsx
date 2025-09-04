@@ -50,12 +50,11 @@ const Signup = () => {
 
           <button
             type="submit"
-            className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-lg"
+            className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-lg cursor-pointer"
           >
             Signup
           </button>
           <p>Already a user then click on Login</p>
-          
         </fieldset>
       </form>
     </div>
