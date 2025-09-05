@@ -12,7 +12,6 @@ function AdminSidebar() {
   return (
     <aside className="w-64 bg-gray-900 text-white min-h-screen p-6 shadow-lg">
       <h2 className="text-xl font-bold mb-8 tracking-wide">Admin Panel</h2>
-
       <nav className="flex flex-col gap-3">
         {links.map((link) => (
           <NavLink

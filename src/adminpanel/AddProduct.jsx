@@ -18,9 +18,10 @@ function AddProduct() {
       [id]: value,
     }));
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(Postdata);
     try {
       const payload = {
         id: formData.id,
@@ -32,7 +33,6 @@ function AddProduct() {
       };
       const result = await Postdata("products", payload);
       console.log("Product saved:", result);
-      alert("Product saved successfully!");
       setFormData({
         id: "",
         title: "",
@@ -46,7 +46,6 @@ function AddProduct() {
       alert("Failed to save product.");
     }
   };
-
   return (
     <div className="max-w-3xl mx-auto mt-8 px-4">
       <div className="bg-white shadow-lg rounded-2xl p-6">
@@ -108,7 +107,6 @@ function AddProduct() {
             />
           </div>
 
-          {/* Description */}
           <div>
             <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-1">
               Description
@@ -153,7 +151,7 @@ function AddProduct() {
             />
           </div>
 
-          {/* Buttons */}
+      
           <div className="flex justify-between">
             <button
               type="submit"
