@@ -8,6 +8,7 @@ function AdminSidebar() {
     { to: "/adminpage/profile", label: "📌 Profile" },
   ];
 
+  
   return (
     <aside className="w-64 bg-gray-900 text-white min-h-screen p-6 shadow-lg">
       <h2 className="text-xl font-bold mb-8 tracking-wide">Admin Panel</h2>
