@@ -7,15 +7,16 @@ import Header from "./Header";
 import AdminLayout from "./adminpanel/AdminLayout";
 import LoginPage from "./LoginPage";
 import AddProduct from "./adminpanel/AddProduct";
+import ProductTable from "./adminpanel/ProductTable";
 import NotFound from "./NotFound";
 import Signup from "./signup";
 import CartPage from "./CartPage";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
- 
+import { ToastContainer, toast } from "react-toastify";
+
 export default function App() {
   const [cart, setCart] = useState([]);
+
   function addToCart(product) {
     setCart((prev) => {
       const found = prev.find((i) => i.id === product.id);
@@ -32,7 +33,7 @@ export default function App() {
 
   function removeFromCart(productId) {
     setCart((prev) => prev.filter((i) => i.id !== productId));
-        toast.error("Item removed from cart!");
+    toast.error("Item removed from cart!");
   }
 
   function changeQty(productId, delta) {
@@ -43,20 +44,10 @@ export default function App() {
     );
   }
 
-  //Public Routes
   const publicRoutes = [
-    { path: "/",
-       element: <Signup
-        /> },
-
-    { path: "/loginpage",
-       element: <LoginPage 
-       /> },
-    { 
-      path: "*",
-       element: <NotFound 
-
-       /> },
+    { path: "/", element: <Signup /> },
+    { path: "/loginpage", element: <LoginPage /> },
+    { path: "*", element: <NotFound /> },
   ];
 
   return (
@@ -69,11 +60,26 @@ export default function App() {
 
         <Route element={<Protected />}>
           <Route path="/main" element={<MainPage />} />
-          <Route path="/products" element={<ProductsPage addToCart={addToCart} />} />
-          <Route path="/cart" element={<CartPage cart={cart} changeQty={changeQty} removeFromCart={removeFromCart} />} />
-          <Route path="/adminpage" element={<AdminLayout />} >
-            <Route path="addproduct" element={<AddProduct />} />
-          </Route>
+          <Route
+            path="/products"
+            element={<ProductsPage addToCart={addToCart} />}
+          />
+          <Route
+            path="/cart"
+            element={
+              <CartPage
+                cart={cart}
+                changeQty={changeQty}
+                removeFromCart={removeFromCart}
+              />
+            }
+          />
+
+          {/* Admin Layout with nested routes */}
+         <Route path="/adminpage" element={<AdminLayout />}>
+  <Route path="dashboard" element={<ProductTable />} />   {/* 👈 Dashboard = Table */}
+  <Route path="addproduct" element={<AddProduct />} />
+</Route>
         </Route>
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} />

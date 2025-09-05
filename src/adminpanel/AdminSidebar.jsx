@@ -2,11 +2,10 @@ import { NavLink } from "react-router-dom";
 
 function AdminSidebar() {
   const links = [
-    { to: "/adminpage/deshboard", label: "📊 Deshboard" },
-    { to: "/adminpage/users", label: "👥 users" },
-    { to: "/adminpage/profile", label: "📌 profile" },
-       { to: "/adminpage/addproduct", label: "📦 Add Product" },
-
+    { to: "/adminpage/dashboard", label: "📊 Product Table" }, 
+    { to: "/adminpage/addproduct", label: "📦 Add Product" },
+    { to: "/adminpage/users", label: "👥 Users" },
+    { to: "/adminpage/profile", label: "📌 Profile" },
   ];
 
   return (
