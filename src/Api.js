@@ -26,5 +26,15 @@ export async function loginUser(userData) {
   const res = await axios.post("https://fakestoreapi.com/auth/login", userData);
   return res.data;
 }
+const Postdata = async (endpoint, payload) => {
+    try {
+        let url = `${API_URL}/${endpoint}`;
+        const response = await axios.post(url, payload);
+        return response.data;
+    } catch (error) {
+        console.error("Error posting data:", error);
+        throw error;
+    }
+  }
 
-export { fetchProducts };
+export { fetchProducts,Postdata };

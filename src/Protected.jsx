@@ -6,5 +6,4 @@ const Proteced = () => {
     
   return isAuth ? <Outlet /> : <Navigate to="/loginpage" />;
 };
-
 export default Proteced;

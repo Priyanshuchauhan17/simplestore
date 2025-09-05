@@ -1,18 +1,16 @@
 import MainPage from "./MainPage";
 import ProductsPage from "./ProductsPage";
-import Protected from "./Proteced"; 
+import Protected from "./Protected";
 import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
+import { Routes, Route } from "react-router-dom";
 const Private = () => {
   return (
-    <div>
+    <Routes>
       <Route element={<Protected />}>
-  <Route path="/mainpage" element={<MainPage />} />  
-  <Route path="/products" element={<ProductsPage />} />
-</Route>
-    </div>
+        <Route path="/mainpage" element={<MainPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+      </Route>
+    </Routes>
   )
 }
-
 export default Private

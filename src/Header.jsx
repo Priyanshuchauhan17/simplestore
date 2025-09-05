@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 
-export default function Header({ cart = [], products = [] }) {
+export default function Header({ cart = [] }) {
   const [open, setOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ export default function Header({ cart = [], products = [] }) {
     localStorage.removeItem("authToken");
     navigate("/");
   };
-
+  
   return (
     <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-purple-600/60 bg-purple-700/90 shadow-lg">
       <div className="mx-auto max-w-6xl px-4">

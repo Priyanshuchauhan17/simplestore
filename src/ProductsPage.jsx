@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { fetchProducts } from "./Api";
-export default function ProductsPage({ cart, addToCart }) {
+export default function ProductsPage({ addToCart }) {
   const [products, setProducts] = useState([]);
   const [query, setQuery] = useState("");
   const [category, setCategory] = useState("all");
@@ -24,19 +24,19 @@ export default function ProductsPage({ cart, addToCart }) {
     ...Array.from(new Set(products.map((p) => p.category))).sort(),
   ];
 
-  function filtered() {
+  const filtered = useMemo(() => {
     return products
       .filter((p) => (category === "all" ? true : p.category === category))
       .filter((p) => p.title.toLowerCase().includes(query.toLowerCase()));
-  }
+  }, [products, category, query]);
 
   const paginated = useMemo(() => {
     const start = (page - 1) * limit;
     const end = start + limit;
-    return filtered().slice(start, end);
-  }, [page, query, category, products]);
+    return filtered.slice(start, end);
+  }, [page, filtered]);
 
-  const totalPages = Math.ceil(filtered().length / limit);
+  const totalPages = Math.ceil(filtered.length / limit);
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
       {/* Search + Category */}

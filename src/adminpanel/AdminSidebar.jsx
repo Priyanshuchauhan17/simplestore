@@ -1,13 +1,12 @@
-import { Link, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 function AdminSidebar() {
-  const location = useLocation();
-
   const links = [
-    { to: "/admin/dashboard", label: "📊 Dashboard" },
-    { to: "/admin/users", label: "👥 Users" },
-    { to: "/admin/products", label: "📦 Products" },
-    { to: "/admin/profile", label: "⚙️ Profile" },
+    { to: "/adminpage/deshboard", label: "📊 Deshboard" },
+    { to: "/adminpage/users", label: "👥 users" },
+    { to: "/adminpage/profile", label: "📌 profile" },
+       { to: "/adminpage/addproduct", label: "📦 Add Product" },
+
   ];
 
   return (
@@ -16,18 +15,19 @@ function AdminSidebar() {
 
       <nav className="flex flex-col gap-3">
         {links.map((link) => (
-          <Link
+          <NavLink
             key={link.to}
             to={link.to}
-            className={`px-4 py-2 rounded-lg transition-colors 
-              ${
-                location.pathname === link.to
+            className={({ isActive }) =>
+              `px-4 py-2 rounded-lg transition-colors ${
+                isActive
                   ? "bg-gray-700 text-white font-semibold"
                   : "hover:bg-gray-800 hover:text-gray-300"
-              }`}
+              }`
+            }
           >
             {link.label}
-          </Link>
+          </NavLink>
         ))}
       </nav>
     </aside>

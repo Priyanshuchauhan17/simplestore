@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {  BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import MainPage from "./MainPage";
 import ProductsPage from "./ProductsPage";
-import Proteced from "./Proteced";
+import Protected from "./Protected";
 import Header from "./Header";
 import AdminLayout from "./adminpanel/AdminLayout";
 import LoginPage from "./LoginPage";
+import AddProduct from "./adminpanel/AddProduct";
 import NotFound from "./NotFound";
 import Signup from "./signup";
 import CartPage from "./CartPage";
@@ -58,44 +59,24 @@ export default function App() {
        /> },
   ];
 
-  // Protected Routes
-  const protectedRoutes = [
-    { path: "/main", element: <MainPage /> },
-    { path: "/products",
-       element: <ProductsPage cart={cart} 
-       addToCart={addToCart} /> },
-    {
-      path: "/cart",
-      element: (
-        <CartPage
-          cart={cart}
-          changeQty={changeQty}
-          removeFromCart={removeFromCart}
-        />
-      ),
-    },
-    {
-      path:"/adminpage",
-      element:<AdminLayout />
-    }
-  ];
   return (
-    
     <>
       <Header cart={cart} />
-  <Routes>
+      <Routes>
         {publicRoutes.map((route, index) => (
           <Route key={index} path={route.path} element={route.element} />
         ))}
 
-        <Route element={<Proteced />}>
-          {protectedRoutes.map((route, index) => (
-            <Route key={index} path={route.path} element={route.element} />
-          ))}
+        <Route element={<Protected />}>
+          <Route path="/main" element={<MainPage />} />
+          <Route path="/products" element={<ProductsPage addToCart={addToCart} />} />
+          <Route path="/cart" element={<CartPage cart={cart} changeQty={changeQty} removeFromCart={removeFromCart} />} />
+          <Route path="/adminpage" element={<AdminLayout />} >
+            <Route path="addproduct" element={<AddProduct />} />
+          </Route>
         </Route>
-            
       </Routes>
-        <ToastContainer position="top-right" autoClose={2000} />
+      <ToastContainer position="top-right" autoClose={2000} />
     </>
   );
 }
