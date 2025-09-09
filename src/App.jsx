@@ -9,10 +9,12 @@ import LoginPage from "./LoginPage";
 import AddProduct from "./adminpanel/AddProduct";
 import ProductTable from "./adminpanel/ProductTable";
 import NotFound from "./NotFound";
-import Signup from "./signup";
+import Signup from "./Signup";
+import profile from "./adminpanel/AdminProfile"
 import CartPage from "./CartPage";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
+import AdminProfile from "./adminpanel/AdminProfile";
 
 export default function App() {
   const [cart, setCart] = useState([]);
@@ -77,8 +79,9 @@ export default function App() {
 
           {/* Admin Layout with nested routes */}
          <Route path="/adminpage" element={<AdminLayout />}>
-  <Route path="dashboard" element={<ProductTable />} />   {/* 👈 Dashboard = Table */}
+  <Route path="dashboard" element={<ProductTable />} />
   <Route path="addproduct" element={<AddProduct />} />
+  <Route path="profile" element={<AdminProfile />} />
 </Route>
         </Route>
       </Routes>

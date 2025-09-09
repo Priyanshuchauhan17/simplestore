@@ -6,6 +6,7 @@ export default function ProductsPage({ addToCart }) {
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState(null);
   const [page, setPage] = useState(1);
+  const [loading,setloading] = useState(true)
   const limit = 8;
   useEffect(() => {
     const loadProducts = async () => {
@@ -14,6 +15,9 @@ export default function ProductsPage({ addToCart }) {
         setProducts(data);
       } catch (error) {
         console.error("Error fetching products:", error);
+      }
+      finally{
+        setloading(false)
       }
     };
     loadProducts();
@@ -35,6 +39,14 @@ export default function ProductsPage({ addToCart }) {
     const end = start + limit;
     return filtered.slice(start, end);
   }, [page, filtered]);
+  if (loading) {
+  return (
+    <div className="flex justify-center items-center h-64">
+      <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin"></div>
+      <p>Loading...........</p>
+    </div>
+  );
+}
 
   const totalPages = Math.ceil(filtered.length / limit);
   return (

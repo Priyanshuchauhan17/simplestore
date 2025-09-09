@@ -1,18 +1,25 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { signupUser } from "./Api";
 import { toast } from "react-toastify";
 
 const Signup = () => {
   const { register, handleSubmit, formState:{errors} } = useForm();
   const navigate = useNavigate();  
 
-  const onSubmit = (data) => {
-    localStorage.setItem("userEmail", data.username); 
-    localStorage.setItem("userPassword", data.password);
-    toast.success('Signup successful!');
-    navigate("/loginpage");
+  const onSubmit = async (data) => {
+    try {
+      const res = await signupUser(data);
+      if (res.success) {
+        toast.success("Signup successful!");
+        navigate("/loginpage");
+      } else {
+        toast.error(res.message || "Signup failed");
+      }
+    } catch (err) {
+      toast.error("Server error");
+    }
   };
 
   return (
@@ -30,18 +37,18 @@ const Signup = () => {
             <label className="block text-sm">Username</label>
             <input
               type="text"
-              {...register("username", { required: "Username required" })}
+              {...register("username", { required: "Username required", minLength: { value: 3, message: "Min 3 chars" } })}
               className="w-full mt-1 px-3 py-2 border rounded-lg"
               placeholder="Enter username"
             />
-            {errors.username && <p>{errors.username.message}</p>}
+            {errors.username && <p className="text-red-500 text-sm">{errors.username.message}</p>}
           </div>
 
           <div>
             <label className="block text-sm">Password</label>
             <input
               type="password"
-              {...register("password", { required: "Password required" })}
+              {...register("password", { required: "Password required", minLength: { value: 5, message: "Min 5 chars" } })}
               className="w-full mt-1 px-3 py-2 border rounded-lg"
               placeholder="Enter password"
             />
@@ -54,7 +61,6 @@ const Signup = () => {
           >
             Signup
           </button>
-          <p>Already a user then click on Login</p>
         </fieldset>
       </form>
     </div>
