@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/auth";   a
+const API_URL = "http://localhost:5000/api/auth";   
 const FAKE_API = "https://fakestoreapi.com";
 
 // ✅ Fetch Products (Fake Store)
@@ -18,14 +18,8 @@ export const fetchProducts = async (page = 1, limit = 20) => {
 };
 
 // ✅ Signup (MySQL via Node backend)
-export async function signupUser(userData) {
-  const res = await axios.post(`${API_URL}/signup`, userData);
-  return res.data;
-}
-
-// ✅ Login (MySQL via Node backend)
-export async function loginUser(userData) {
-  const res = await axios.post(`${API_URL}/login`, userData);
+export async function authUser(userData, type) {
+  const res = await axios.post(`${API_URL}/${type}`, userData);
   return res.data;
 }
 

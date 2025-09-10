@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { signupUser } from "./Api";
+import { authUser } from "./Api";
 import { toast } from "react-toastify";
 
 const Signup = () => {
@@ -10,7 +10,7 @@ const Signup = () => {
 
   const onSubmit = async (data) => {
     try {
-      const res = await signupUser(data);
+      const res = await authUser((data),"signup");
       if (res.success) {
         toast.success("Signup successful!");
         navigate("/loginpage");

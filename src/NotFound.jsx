@@ -1,23 +1,116 @@
-import React from "react";
-const NotFound = () => {
+import React, { useEffect } from "react";
+import Parallax from "parallax-js";
+import "./notfound.css";
+
+export default function NotFound404() {
+  useEffect(() => {
+    const scene = document.getElementById("scene");
+    if (scene) {
+      new Parallax(scene, { hoverOnly: false });
+    }
+  }, []);
+
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center px-4">
-      <h1 className="text-9xl font-extrabold text-gray-800">404</h1>
-      <h2 className="text-3xl font-semibold text-gray-700 mt-4">
-        Page Not Found
-      </h2>
-      <p className="text-gray-500 mt-2 max-w-md">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex perferendis
-        corrupti quod quas vel eveniet sunt esse harum laboriosam! Odit eum,
-        natus est quidem a veniam eveniet. Optio, libero hic?
-      </p>
-      <a
-        href="/"
-        className="mt-6 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-md hover:bg-blue-700 transition"
-      >
-        Go Home
-      </a>
+    <div>
+      {/* About Section */}
+      <div className="about">
+        <a
+          className="bg_links social portfolio"
+          href="https://www.rafaelalucas.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="icon"></span>
+        </a>
+        <a
+          className="bg_links social dribbble"
+          href="https://dribbble.com/rafaelalucas"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="icon"></span>
+        </a>
+        <a
+          className="bg_links social linkedin"
+          href="https://www.linkedin.com/in/rafaelalucas/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="icon"></span>
+        </a>
+        <a className="bg_links logo"></a>
+      </div>
+
+      {/* Navigation */}
+      <nav>
+        <div className="menu">
+          <p className="website_name">404</p>
+          <div className="menu_links">
+            <a href="/" className="link">
+              Signup
+            </a>
+            
+          </div>
+          <div className="menu_icon">
+            <span className="icon"></span>
+          </div>
+        </div>
+      </nav>
+
+      {/* Wrapper */}
+      <section className="wrapper">
+        <div className="container">
+          {/* Parallax Scene */}
+          <div id="scene" className="scene" data-hover-only="false">
+            <div className="circle" data-depth="1.2"></div>
+
+            <div className="one" data-depth="0.9">
+              <div className="content">
+                <span className="piece"></span>
+                <span className="piece"></span>
+                <span className="piece"></span>
+              </div>
+            </div>
+
+            <div className="two" data-depth="0.60">
+              <div className="content">
+                <span className="piece"></span>
+                <span className="piece"></span>
+                <span className="piece"></span>
+              </div>
+            </div>
+
+            <div className="three" data-depth="0.40">
+              <div className="content">
+                <span className="piece"></span>
+                <span className="piece"></span>
+                <span className="piece"></span>
+              </div>
+            </div>
+
+            <p className="p404" data-depth="0.50">
+              404
+            </p>
+            <p className="p404" data-depth="0.10">
+              404
+            </p>
+          </div>
+
+          {/* Text */}
+          <div className="text">
+            <article>
+              <h1 className="h11">Not Found</h1>
+              <p>
+                Uh oh! Looks like you got lost. <br />
+                Go back to the homepage if you dare!
+              </p>
+              <button onClick={() => (window.location.href = "/")}>
+                I dare!
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
     </div>
   );
-};
-export default NotFound;
+}

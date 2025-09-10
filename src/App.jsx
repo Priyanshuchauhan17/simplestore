@@ -10,7 +10,6 @@ import AddProduct from "./adminpanel/AddProduct";
 import ProductTable from "./adminpanel/ProductTable";
 import NotFound from "./NotFound";
 import Signup from "./Signup";
-import profile from "./adminpanel/AdminProfile"
 import CartPage from "./CartPage";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -60,7 +59,8 @@ export default function App() {
           <Route key={index} path={route.path} element={route.element} />
         ))}
 
-        <Route element={<Protected />}>
+        {/* Normal user protected routes */}
+        <Route element={<Protected role="user" />}>
           <Route path="/main" element={<MainPage />} />
           <Route
             path="/products"
@@ -76,13 +76,15 @@ export default function App() {
               />
             }
           />
+        </Route>
 
-          {/* Admin Layout with nested routes */}
-         <Route path="/adminpage" element={<AdminLayout />}>
-  <Route path="dashboard" element={<ProductTable />} />
-  <Route path="addproduct" element={<AddProduct />} />
-  <Route path="profile" element={<AdminProfile />} />
-</Route>
+        {/* Admin routes protected */}
+        <Route element={<Protected role="admin" />}>
+          <Route path="/adminpage" element={<AdminLayout />}>
+            <Route path="dashboard" element={<ProductTable />} />
+            <Route path="addproduct" element={<AddProduct />} />
+            <Route path="profile" element={<AdminProfile />} />
+          </Route>
         </Route>
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} />

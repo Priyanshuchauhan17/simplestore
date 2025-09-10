@@ -12,6 +12,9 @@ export default function Header({ cart = [] }) {
     [cart]
   );
 
+  const user = JSON.parse(localStorage.getItem("user"));
+  const role = user?.role;
+
   const linkBase =
     "px-3 py-2 rounded-xl transition hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/60";
   const activeClass = "bg-white/30 text-white shadow-inner";
@@ -19,9 +22,10 @@ export default function Header({ cart = [] }) {
 
   const logout = () => {
     localStorage.removeItem("authToken");
-    navigate("/");
+    localStorage.removeItem("user");
+    navigate("/loginpage");
   };
-  
+
   return (
     <header className="sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-purple-600/60 bg-purple-700/90 shadow-lg">
       <div className="mx-auto max-w-6xl px-4">
@@ -59,7 +63,7 @@ export default function Header({ cart = [] }) {
                 >
                   Home
                 </NavLink>
-                 <NavLink
+                <NavLink
                   to="/adminpage"
                   className={({ isActive }) =>
                     `${linkBase} ${isActive ? activeClass : idleClass}`
@@ -84,7 +88,6 @@ export default function Header({ cart = [] }) {
                   }
                 >
                   {/* Cart icon */}
-               
                   Cart
                   {/* Badge */}
                   <span className="absolute -top-1 -right-2 min-w-[1.25rem] rounded-full bg-white text-purple-700 text-xs font-bold px-1.5 py-0.5 text-center">
@@ -141,9 +144,17 @@ export default function Header({ cart = [] }) {
                 viewBox="0 0 24 24"
               >
                 {open ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
