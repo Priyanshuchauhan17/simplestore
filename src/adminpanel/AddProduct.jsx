@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Postdata } from "../Api";
+import { postProduct } from "../Api";
 
 function AddProduct() {
   const [formData, setFormData] = useState({
@@ -18,34 +18,35 @@ function AddProduct() {
       [id]: value,
     }));
   };
+  // console.log(formData);
+  
+  function handNewreset(e){
+         setFormData("")
+  }
   
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log(Postdata);
-    try {
-      const payload = {
-        id: formData.id,
-        title: formData.title,
-        price: parseFloat(formData.price),
-        description: formData.description,
-        category: formData.category,
-        image: formData.image,
-      };
-      const result = await Postdata("products", payload);
-      console.log("Product saved:", result);
-      setFormData({
-        id: "",
-        title: "",
-        price: "",
-        description: "",
-        category: "",
-        image: "",
-      });
-    } catch (error) {
-      console.error("Error saving product:", error);
-      alert("Failed to save product.");
-    }
-  };
+  e.preventDefault();
+  try {
+    const payload = {
+      title: formData.title,
+      price: parseFloat(formData.price),
+      description: formData.description,
+      category: formData.category,
+      image: formData.image,
+    };
+    // console.log(payload);
+    
+
+    const token = localStorage.getItem("authToken"); // store token at login
+    const result = await postProduct(payload, token);
+
+    console.log("Product saved:", result);
+    alert("✅ Product added successfully");
+  } catch (error) {
+    console.error("Error saving product:", error);
+    alert("❌ Failed to save product.");
+  }
+}
   return (
     <div className="max-w-3xl mx-auto mt-8 px-4">
       <div className="bg-white shadow-lg rounded-2xl p-6">
@@ -65,7 +66,7 @@ function AddProduct() {
           <div>
             <label htmlFor="id" className="block text-sm font-medium text-gray-700 mb-1">
               ID
-            </label>
+            </label>  
             <input
               type="number"
               id="id"
@@ -160,9 +161,11 @@ function AddProduct() {
               Save
             </button>
             <button
+            onClick={handNewreset}
               type="reset"
               className="px-4 py-2 bg-gray-300 text-gray-800 font-medium rounded-lg shadow hover:bg-gray-400 transition"
             >
+              
               Reset
             </button>
           </div>

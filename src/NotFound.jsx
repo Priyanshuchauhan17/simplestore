@@ -13,7 +13,7 @@ export default function NotFound404() {
   return (
     <div>
       {/* About Section */}
-      <div className="about">
+      <div className="aboutq">
         <a
           className="bg_links social portfolio"
           href="https://www.rafaelalucas.com"
@@ -44,7 +44,7 @@ export default function NotFound404() {
       {/* Navigation */}
       <nav>
         <div className="menu">
-          <p className="website_name">404</p>
+          <p className="website_name">404!</p>
           <div className="menu_links">
             <a href="/" className="link">
               Signup
@@ -89,10 +89,10 @@ export default function NotFound404() {
             </div>
 
             <p className="p404" data-depth="0.50">
-              404
+              404!
             </p>
             <p className="p404" data-depth="0.10">
-              404
+              404!
             </p>
           </div>
 

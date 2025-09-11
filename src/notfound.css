@@ -142,12 +142,12 @@ nav .menu .menu_links {
   opacity: 0.5;
 }
 nav .menu .menu_links:hover {
-  opacity: 1;
+  /* opacity: 1; */
 }
 nav .menu .menu_links .link {
-  color: white;
+  color: rgb(0, 0, 0);
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 800;
   margin-right: 50px;
   letter-spacing: 2px;
   position: relative;
@@ -207,8 +207,8 @@ nav .menu .menu_links .link:before {
   font-size: 200px;
   font-weight: 700;
   letter-spacing: 4px;
-  margin-left:40%;
-  margin-top: 12vh;
+  margin-left:35%;
+  margin-top: 15vh;
   color: white;
   display: flex !important;
   justify-content: center;
@@ -263,7 +263,7 @@ nav .menu .menu_links .link:before {
   transform: translateX(-50%);
 }
 .text article p {
-  color: white;
+  color: purple;
   font-size: 18px;
   letter-spacing: 0.6px;
   margin-bottom: 40px;
@@ -276,8 +276,8 @@ nav .menu .menu_links .link:before {
   cursor: pointer;
   box-shadow: 0px 15px 20px rgba(54, 24, 79, 0.5);
   z-index: 3;
-  color: #695681;
-  background-color: white;
+  color: #000000;
+  background-color: rgb(217, 67, 243);
   text-transform: uppercase;
   font-weight: 600;
   font-size: 12px;
@@ -286,6 +286,6 @@ nav .menu .menu_links .link:before {
 .text article button:hover {
   box-shadow: 0px 10px 10px -10px rgba(54, 24, 79, 0.5);
   transform: translateY(5px);
-  background: #fb8a8a;
+  background: #5409a0;
   color: white;
 }
