@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
 import { postProduct } from "../Api";
 
 function AddProduct() {
@@ -26,6 +27,7 @@ function AddProduct() {
   
   const handleSubmit = async (e) => {
   e.preventDefault();
+    setFormData("")
   try {
     const payload = {
       title: formData.title,
@@ -36,15 +38,14 @@ function AddProduct() {
     };
     // console.log(payload);
     
-
     const token = localStorage.getItem("authToken"); // store token at login
     const result = await postProduct(payload, token);
 
     console.log("Product saved:", result);
-    alert("✅ Product added successfully");
+      toast.success("Product saved ✅");
   } catch (error) {
     console.error("Error saving product:", error);
-    alert("❌ Failed to save product.");
+    toast.error("❌ Failed to save product.");
   }
 }
   return (

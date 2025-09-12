@@ -33,17 +33,16 @@ export default function Header({ cart = [] }) {
           {/* Brand */}
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-xl font-extrabold tracking-tight text-white"
+            className="inline-flex items-center gap-2 text-lg sm:text-xl font-extrabold tracking-tight text-white"
           >
-            {/* Logo */}
-            <span className="inline-grid h-8 w-8 place-items-center rounded-xl bg-white/20">
+            <span className="inline-grid h-8 w-8 sm:h-9 sm:w-9 place-items-center rounded-xl bg-white/20">
               🛍️
             </span>
             <span>SimpleStore</span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-2 text-sm">
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-2 text-sm sm:text-base">
             {!isAuth ? (
               <NavLink
                 to="/loginpage"
@@ -71,7 +70,6 @@ export default function Header({ cart = [] }) {
                 >
                   Admin
                 </NavLink>
-
                 <NavLink
                   to="/products"
                   className={({ isActive }) =>
@@ -80,24 +78,22 @@ export default function Header({ cart = [] }) {
                 >
                   Products
                 </NavLink>
-
                 <NavLink
                   to="/cart"
                   className={({ isActive }) =>
-                    `${linkBase} ${isActive ? activeClass : idleClass} relative inline-flex items-center gap-2`
+                    `${linkBase} ${
+                      isActive ? activeClass : idleClass
+                    } relative inline-flex items-center gap-2`
                   }
                 >
-                  {/* Cart icon */}
                   Cart
-                  {/* Badge */}
-                  <span className="absolute -top-1 -right-2 min-w-[1.25rem] rounded-full bg-white text-purple-700 text-xs font-bold px-1.5 py-0.5 text-center">
+                  <span className="absolute -top-1 -right-2 min-w-[1.1rem] rounded-full bg-white text-purple-700 text-[10px] sm:text-xs font-bold px-1.5 py-0.5 text-center">
                     {cartCount}
                   </span>
                 </NavLink>
-
                 <button
                   onClick={logout}
-                  className={`${linkBase} ${idleClass} !px-4 border border-white/30 hover:border-white/60`}
+                  className={`${linkBase} ${idleClass} !px-3 sm:!px-4 border border-white/30 hover:border-white/60`}
                 >
                   Logout
                 </button>
@@ -105,7 +101,7 @@ export default function Header({ cart = [] }) {
             )}
           </nav>
 
-          {/* Mobile: right section */}
+          {/* Mobile Nav Toggle */}
           <div className="flex items-center gap-2 md:hidden">
             {isAuth && (
               <Link
@@ -113,18 +109,8 @@ export default function Header({ cart = [] }) {
                 aria-label="Open cart"
                 className="relative rounded-xl p-2 text-white/90 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
-                  <path d="M6 6h15l-1.5 9h-12z" />
-                  <path d="M6 6l-2-2" />
-                </svg>
-                <span className="absolute -top-1 -right-1 rounded-full bg-white text-purple-700 text-[10px] font-bold px-1.5 py-0.5">
+                🛒
+                <span className="absolute -top-1 -right-1 rounded-full bg-white text-purple-700 text-[10px] font-bold px-1 py-0.5">
                   {cartCount}
                 </span>
               </Link>
@@ -137,7 +123,7 @@ export default function Header({ cart = [] }) {
               className="rounded-xl p-2 text-white/90 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/60"
             >
               <svg
-                className="h-6 w-6"
+                className="h-6 w-6 sm:h-7 sm:w-7"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
@@ -162,13 +148,13 @@ export default function Header({ cart = [] }) {
         </div>
       </div>
 
-      {/* Mobile sheet */}
+      {/* Mobile Sheet */}
       <div
-        className={`md:hidden transition-[max-height] duration-300 overflow-hidden ${
-          open ? "max-h-80" : "max-h-0"
+        className={`md:hidden transition-all duration-300 overflow-hidden ${
+          open ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <nav className="mx-auto max-w-6xl px-4 pb-4 pt-2 grid gap-2 text-base">
+        <nav className="mx-auto max-w-6xl px-4 pb-4 pt-2 grid gap-2 text-sm sm:text-base">
           {!isAuth ? (
             <Link
               to="/loginpage"
@@ -187,6 +173,15 @@ export default function Header({ cart = [] }) {
                 }`}
               >
                 Home
+              </Link>
+              <Link
+                to="/adminpage"
+                onClick={() => setOpen(false)}
+                className={`rounded-xl px-3 py-2 text-white/90 hover:bg-white/20 ${
+                  location.pathname === "/adminpage" ? "bg-white/20" : ""
+                }`}
+              >
+                Admin
               </Link>
               <Link
                 to="/products"

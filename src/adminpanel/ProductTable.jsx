@@ -11,7 +11,6 @@ const ProductTable = () => {
       try {
         const data = await fetchProducts();
         setProducts(data);
-        console.log(data);
       } catch (error) {
         console.error("Error fetching products:", error);
       } finally {
@@ -52,58 +51,36 @@ const ProductTable = () => {
         </Link>
       </div>
 
-      {/* Table Wrapper for responsiveness */}
+      {/* Responsive Table */}
       <div className="overflow-x-auto">
-        <table className="min-w-full border border-gray-300 divide-y divide-gray-200 shadow-lg rounded-lg text-sm md:text-base">
+        <table className="min-w-full border border-gray-300 divide-y divide-gray-200 shadow-md rounded-lg text-xs sm:text-sm md:text-base">
           <thead className="bg-gray-100">
             <tr>
-              <th className="px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                ID
-              </th>
-              <th className="px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                Title
-              </th>
-              <th className="px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                Price (INR)
-              </th>
-              <th className="hidden sm:table-cell px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                Description
-              </th>
-              <th className="hidden sm:table-cell px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                Category
-              </th>
-              <th className="px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                Image
-              </th>
-              <th className="px-2 md:px-6 py-3 text-left font-semibold text-gray-700">
-                Actions
-              </th>
+              <th className="px-2 md:px-4 py-2 text-left font-semibold text-gray-700">ID</th>
+              <th className="px-2 md:px-4 py-2 text-left font-semibold text-gray-700">Title</th>
+              <th className="px-2 md:px-4 py-2 text-left font-semibold text-gray-700">Price (INR)</th>
+              <th className="hidden md:table-cell px-2 md:px-4 py-2 text-left font-semibold text-gray-700">Description</th>
+              <th className="hidden lg:table-cell px-2 md:px-4 py-2 text-left font-semibold text-gray-700">Category</th>
+              <th className="px-2 md:px-4 py-2 text-left font-semibold text-gray-700">Image</th>
+              <th className="px-2 md:px-4 py-2 text-left font-semibold text-gray-700">Actions</th>
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
             {products.map((item) => (
               <tr key={item.id} className="hover:bg-gray-50">
-                <td className="px-2 md:px-6 py-4 text-gray-900">{item.id}</td>
-                <td className="px-2 md:px-6 py-4 text-gray-900 truncate max-w-[120px] md:max-w-[200px]">
-                  {item.title}
-                </td>
-                <td className="px-2 md:px-6 py-4 text-gray-900">
-                  {(item.price * 83).toFixed(2)}
-                </td>
-                <td className="hidden sm:table-cell px-2 md:px-6 py-4 text-gray-600 truncate max-w-[200px]">
-                  {item.description}
-                </td>
-                <td className="hidden sm:table-cell px-2 md:px-6 py-4 text-gray-900">
-                  {item.category}
-                </td>
-                <td className="px-2 md:px-6 py-4">
+                <td className="px-2 md:px-4 py-3 text-gray-900">{item.id}</td>
+                <td className="px-2 md:px-4 py-3 text-gray-900 truncate max-w-[120px] md:max-w-[200px]">{item.title}</td>
+                <td className="px-2 md:px-4 py-3 text-gray-900">{(item.price * 83).toFixed(2)}</td>
+                <td className="hidden md:table-cell px-2 md:px-4 py-3 text-gray-600 truncate max-w-[200px]">{item.description}</td>
+                <td className="hidden lg:table-cell px-2 md:px-4 py-3 text-gray-900">{item.category}</td>
+                <td className="px-2 md:px-4 py-3">
                   <img
                     src={item.image}
                     alt={item.title}
                     className="w-10 h-10 md:w-12 md:h-12 rounded object-cover border"
                   />
                 </td>
-                <td className="px-2 md:px-6 py-4 flex flex-col sm:flex-row gap-2">
+                <td className="px-2 md:px-4 py-3 flex flex-col sm:flex-row gap-2">
                   <button className="text-blue-600 hover:underline">Edit</button>
                   <button
                     onClick={() => handleDelet(item.id)}
@@ -117,10 +94,7 @@ const ProductTable = () => {
 
             {products.length === 0 && (
               <tr>
-                <td
-                  colSpan="7"
-                  className="px-6 py-4 text-center text-gray-500"
-                >
+                <td colSpan="7" className="px-6 py-4 text-center text-gray-500">
                   No products found.
                 </td>
               </tr>

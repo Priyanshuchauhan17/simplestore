@@ -5,6 +5,7 @@ import ProductsPage from "./ProductsPage";
 import Protected from "./Protected";
 import Header from "./Header";
 import AdminLayout from "./adminpanel/AdminLayout";
+import UsersInfo from "./adminpanel/UsersInfo";
 import LoginPage from "./LoginPage";
 import AddProduct from "./adminpanel/AddProduct";
 import ProductTable from "./adminpanel/ProductTable";
@@ -79,13 +80,14 @@ export default function App() {
         </Route>
 
         {/* Admin routes protected */}
-        <Route element={<Protected role="admin" />}>
-          <Route path="/adminpage" element={<AdminLayout />}>
-            <Route path="dashboard" element={<ProductTable />} />
-            <Route path="addproduct" element={<AddProduct />} />
-            <Route path="profile" element={<AdminProfile />} />
-          </Route>
-        </Route>
+      <Route element={<Protected role="admin" />}>
+  <Route path="/adminpage" element={<AdminLayout />}>
+    <Route path="dashboard" element={<ProductTable />} />
+    <Route path="addproduct" element={<AddProduct />} />
+    <Route path="users" element={<UsersInfo />} />   {/* ✅ Added */}
+    <Route path="profile" element={<AdminProfile />} />
+  </Route>
+</Route>
       </Routes>
       <ToastContainer position="top-right" autoClose={2000} />
     </>

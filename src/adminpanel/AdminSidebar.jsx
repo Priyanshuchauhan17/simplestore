@@ -20,17 +20,17 @@ function AdminSidebar() {
       <h4 className="text-white mb-4">Admin Panel</h4>
 
       {/* Toggle Button (Admin Panel ke niche) */}
-      <button
+      {/* <button
         onClick={() => setIsOpen(!isOpen)}
         className="mb-4 w-full flex items-center justify-center bg-purple-600 hover:bg-purple-700 rounded-md p-2 cursor-pointer"
-      >
+      > */}
         {/* Hamburger Icon */}
-        <div className="space-y-1">
+        {/* <div className="space-y-1">
           <span className="block w-6 h-0.5 bg-white"></span>
           <span className="block w-6 h-0.5 bg-white"></span>
           <span className="block w-6 h-0.5 bg-white"></span>
-        </div>
-      </button>
+        </div> */}
+      {/* </button> */}
 
       {/* Sidebar Links */}
       <nav className="flex flex-col gap-2">

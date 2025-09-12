@@ -8,6 +8,7 @@ export default function ProductsPage({ addToCart }) {
   const [page, setPage] = useState(1);
   const [loading,setloading] = useState(true)
   const limit = 8;
+  
   useEffect(() => {
     const loadProducts = async () => {
       try {
@@ -51,32 +52,32 @@ export default function ProductsPage({ addToCart }) {
   const totalPages = Math.ceil(filtered.length / limit);
   return (
     <main className="max-w-6xl mx-auto px-4 py-8">
-      {/* Search + Category */}
-      <div className="flex gap-3 mb-6">
-        <input
-          value={query}
-          onChange={(e) => {
-            setQuery(e.target.value);
-            setPage(1);
-          }}
-          placeholder="Search products..."
-          className="px-3 py-2 border rounded-md flex-1"
-        />
-        <select
-          value={category}
-          onChange={(e) => {
-            setCategory(e.target.value);
-            setPage(1);
-          }}
-          className="px-3 py-2 border rounded-md bg-white"
-        >
-          {categories.map((c) => (
-            <option key={c} value={c}>
-              {c}
-            </option>
-          ))}
-        </select>
-      </div>
+      <div className="flex flex-col sm:flex-row gap-3 mb-6">
+  <input
+    value={query}
+    onChange={(e) => {
+      setQuery(e.target.value);
+      setPage(1);
+    }}
+    placeholder="Search products..."
+    className="px-3 py-2 border rounded-md flex-1"
+  />
+  <select
+    value={category}
+    onChange={(e) => {
+      setCategory(e.target.value);
+      setPage(1);
+    }}
+    className="px-3 py-2 border rounded-md bg-white sm:w-48"
+  >
+    {categories.map((c) => (
+      <option key={c} value={c}>
+        {c}
+      </option>
+    ))}
+  </select>
+</div>
+
       {/* Product Grid */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {paginated.map((p) => (

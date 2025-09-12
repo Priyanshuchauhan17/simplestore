@@ -2,9 +2,9 @@ import axios from "axios";
 
 const AUTH_API = "http://localhost:5000/api/auth";   
 const PRODUCTS_API = "http://localhost:5000/api/products";
-
+const USER_API = "http://localhost:5000/api/users"
 // ✅ Fetch Products
-export const fetchProducts = async (page = 1, limit = 20) => {
+export const fetchProducts = async (page = 1, limit = 300) => {
   try {
     const response = await axios.get(PRODUCTS_API);
     const allProducts = response.data;
@@ -23,7 +23,10 @@ export async function authUser(userData, type) {
   const res = await axios.post(`${AUTH_API}/${type}`, userData);
   return res.data;
 }
-
+export async function userDataa(users) {
+  const ress = await axios.get(`${USER_API}`);
+  return ress.data
+}
 // ✅ Dynamic Post to Auth (login/signup or other auth endpoints)
 export const PostdataAuth = async (endpoint, payload) => {
   try {
